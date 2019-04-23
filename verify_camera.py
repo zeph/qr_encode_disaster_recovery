@@ -37,7 +37,7 @@ def display(im, decodedObjects):
  
   # Display results 
   cv2.imshow("Results", im);
-  cv2.waitKey(100);
+  cv2.waitKey(50);
  
    
 # Main 
@@ -53,4 +53,4 @@ if __name__ == '__main__':
     display(frame, decodedObjects)
     if len(decodedObjects) > 0:
           cv2.waitKey(0);
-          
+
