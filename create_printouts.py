@@ -1,13 +1,26 @@
-import pyqrcode
-content = ""
-c_limit = 512
+import qrcode
+import qrcode.image.svg
 
+method = 'basic'
+chunks = 3
+
+content_a = ""
 with open("chiave.armored") as f:
-    content = ''.join(f.readlines())
+    content_a = f.readlines()
 
-c_count = len(content)/c_limit
+if method == 'basic':
+    # Simple factory, just a set of rects.
+    factory = qrcode.image.svg.SvgImage
+elif method == 'fragment':
+    # Fragment factory (also just a set of rects)
+    factory = qrcode.image.svg.SvgFragmentImage
+else:
+    # Combined path factory, fixes white space that may occur when zooming
+    factory = qrcode.image.svg.SvgPathImage
 
-for i in xrange(0, c_count):
-    chunk = content[i*c_limit:c_limit]
-    qr = pyqrcode.create(chunk, version=21, error='L')
-    qr.png('chunk{0}.png'.format(i), scale=6)
+cs = len(content_a)//chunks
+for i in range(0, chunks):
+    img = qrcode.make(
+        ''.join(content_a[cs*i:cs*(i+1)]),
+        image_factory=factory)
+    img.save("chunk{0}.svg".format(i), "SVG")

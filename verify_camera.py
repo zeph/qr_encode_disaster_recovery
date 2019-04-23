@@ -9,8 +9,8 @@ def decode(im) :
  
   # Print results
   for obj in decodedObjects:
-    print('Type : ', obj.type)
-    print('Data : ', obj.data,'\n')
+    print(obj.data.decode('ascii'))
+    cv2.waitKey(0);
      
   return decodedObjects
  
@@ -38,14 +38,18 @@ def display(im, decodedObjects):
  
   # Display results 
   cv2.imshow("Results", im);
-  cv2.waitKey(0);
+  cv2.waitKey(100);
  
    
 # Main 
 if __name__ == '__main__':
  
   # Read image
-  im = cv2.imread('camera_picture.jpg')
- 
-  decodedObjects = decode(im)
-  display(im, decodedObjects)
+  cap = cv2.VideoCapture(0)
+  while(1):
+
+    # Take each frame
+    _, frame = cap.read()
+    decodedObjects = decode(frame)
+    display(frame, decodedObjects)
+
