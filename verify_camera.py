@@ -10,8 +10,7 @@ def decode(im) :
   # Print results
   for obj in decodedObjects:
     print(obj.data.decode('ascii'))
-    cv2.waitKey(0);
-     
+
   return decodedObjects
  
  
@@ -52,4 +51,6 @@ if __name__ == '__main__':
     _, frame = cap.read()
     decodedObjects = decode(frame)
     display(frame, decodedObjects)
-
+    if len(decodedObjects) > 0:
+          cv2.waitKey(0);
+          
