@@ -1,4 +1,7 @@
 *.png
+*.pdf
+*.svg
+chunk*
 *.armored
 p2
 .vscode
