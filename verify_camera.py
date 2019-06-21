@@ -9,7 +9,7 @@ def decode(im) :
  
   # Print results
   for obj in decodedObjects:
-    print(obj.data.decode('ascii'))
+    print(obj.data.decode('UTF-8'))
 
   return decodedObjects
  
