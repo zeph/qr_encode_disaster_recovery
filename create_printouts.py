@@ -1,12 +1,13 @@
+import sys
 import qrcode
 import qrcode.image.svg
 
 method = 'basic'
 chunks = 3
 
-content_a = ""
-with open("chiave.armored") as f:
-    content_a = f.readlines()
+content_a = []
+for line in sys.stdin:
+    content_a.append(line)
 
 if method == 'basic':
     # Simple factory, just a set of rects.
