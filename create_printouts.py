@@ -19,7 +19,7 @@ else:
     # Combined path factory, fixes white space that may occur when zooming
     factory = qrcode.image.svg.SvgPathImage
 
-cs = len(content_a)//chunks
+cs = 1+len(content_a)//chunks
 for i in range(0, chunks):
     img = qrcode.make(
         ''.join(content_a[cs*i:cs*(i+1)]),
